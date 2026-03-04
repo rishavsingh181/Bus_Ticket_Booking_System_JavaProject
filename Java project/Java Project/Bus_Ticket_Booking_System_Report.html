@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Booking System - Project Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            color: #000;
+            background: #fff;
+            padding: 1in;
+        }
+
+        .page {
+            max-width: 8.5in;
+            margin: 0 auto;
+            page-break-after: always;
+        }
+
+        .page:last-child {
+            page-break-after: avoid;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 18pt;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 14pt;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            text-align: justify;
+            margin-bottom: 10px;
+            text-indent: 0.5in;
+        }
+
+        p.no-indent {
+            text-indent: 0;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .team-section {
+            margin-top: 30px;
+            text-align: right;
+        }
+
+        .team-section h3 {
+            text-align: center;
+        }
+
+        .team-member {
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #000;
+        }
+
+        th,
+        td {
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .flowchart {
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+            white-space: pre;
+            background: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ccc;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .code {
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+            background: #f5f5f5;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+
+        ul,
+        ol {
+            margin-left: 0.5in;
+            margin-bottom: 10px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .toc {
+            margin: 20px 0;
+        }
+
+        .toc-item {
+            margin: 8px 0;
+        }
+
+        .page-title {
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cover-page {
+            text-align: center;
+            padding-top: 2in;
+        }
+
+        .cover-page h1 {
+            font-size: 24pt;
+            margin-bottom: 30px;
+        }
+
+        .cover-page h2 {
+            font-size: 18pt;
+            margin-bottom: 50px;
+        }
+
+        .submitted-info {
+            margin-top: 100px;
+            text-align: left;
+            padding-left: 1in;
+        }
+
+        .college-info {
+            margin-top: 80px;
+            font-size: 14pt;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+
+            .page {
+                padding: 0.75in;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1>BUS TICKET BOOKING SYSTEM</h1>
+        <h2>A Java Console Application with JDBC</h2>
+
+        <p class="no-indent center" style="margin-top: 50px; font-size: 14pt;">
+            <strong>A Project Report</strong><br>
+            Submitted in partial fulfillment of the requirements for<br>
+            the course in Java Programming
+        </p>
+
+        <div class="submitted-info">
+            <p class="no-indent"><strong>Submitted By:</strong></p>
+            <p class="no-indent">Subhankar Das </p>
+            <p class="no-indent">24B11AI406</p>
+            <p class="no-indent">Pritam Sahoo</p>
+            <p class="no-indent">24B11AI3</p>
+            <p class="no-indent">Student Name</p>
+            <p class="no-indent">Roll Number</p>
+            <p class="no-indent">Student Name</p>
+            <p class="no-indent">Roll Number</p>
+            <p class="no-indent">Student Name</p>
+            <p class="no-indent">Roll Number</p>
+            <br>
+            <p class="no-indent"><strong>Submitted To:</strong></p>
+            <p class="no-indent">Faculty Name</p>
+            <p class="no-indent">Department of Computer Science</p>
+        </div>
+
+        <div class="college-info">
+            <p class="no-indent center"><strong>College/University Name</strong></p>
+            <p class="no-indent center">January 2026</p>
+        </div>
+    </div>
+
+    <!-- Abstract Page -->
+    <div class="page">
+        <h1>ABSTRACT</h1>
+        <h2>BUS TICKET BOOKING SYSTEM</h2>
+
+        <p>
+            The <strong>Bus Ticket Booking System</strong> is a Java-based application developed using
+            <strong>J2SE</strong> with
+            integrated database support to automate the management of bus ticket reservations. The system is designed to
+            perform essential operations such as booking tickets, viewing seat availability, canceling bookings, and
+            searching reservations through a menu-driven console interface. By utilizing <strong>JDBC</strong> for
+            database
+            connectivity with MySQL, the application ensures persistent data storage, improved data accuracy, and
+            efficient retrieval of booking details, thereby reducing manual effort and errors.
+        </p>
+
+        <p>
+            The system follows object-oriented programming principles and adopts a modular architecture to enhance
+            maintainability and scalability. Key features include route management, seat allocation with visual seat
+            maps, double-booking prevention using database transactions, input validation, and exception handling to
+            ensure reliable execution. The application implements a layered architecture with separate Model, DAO
+            (Data Access Object), Service, and Presentation layers.
+        </p>
+
+        <h3>Software Requirements:</h3>
+        <p class="no-indent"><strong>Operating System:</strong> Windows / Linux</p>
+        <p class="no-indent"><strong>Programming Language:</strong> Java (J2SE)</p>
+        <p class="no-indent"><strong>JDK Version:</strong> JDK 8 or above</p>
+        <p class="no-indent"><strong>IDE:</strong> VS Code / Eclipse / IntelliJ / NetBeans</p>
+        <p class="no-indent"><strong>Database:</strong> MySQL 5.7 or above</p>
+        <p class="no-indent"><strong>JDBC Driver:</strong> MySQL Connector/J 8.0</p>
+
+        <h3>Hardware Requirements:</h3>
+        <p class="no-indent"><strong>Processor:</strong> Intel i3 or above</p>
+        <p class="no-indent"><strong>RAM:</strong> Minimum 4 GB</p>
+        <p class="no-indent"><strong>Hard Disk:</strong> 20 GB free space</p>
+
+        <div class="team-section">
+            <h3>Project Team</h3>
+            <p class="no-indent center">Student Name (Roll Number)</p>
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="page">
+        <h1 class="page-title">TABLE OF CONTENTS</h1>
+
+        <div class="toc">
+            <p class="no-indent toc-item">1. Introduction .................................................... 4</p>
+            <p class="no-indent toc-item">2. Objectives ...................................................... 5</p>
+            <p class="no-indent toc-item">3. System Requirements ............................................. 6</p>
+            <p class="no-indent toc-item">4. System Architecture ............................................. 7</p>
+            <p class="no-indent toc-item">5. Database Design ................................................. 8</p>
+            <p class="no-indent toc-item">&nbsp;&nbsp;&nbsp;5.1 Entity Relationship Diagram</p>
+            <p class="no-indent toc-item">&nbsp;&nbsp;&nbsp;5.2 Table Descriptions</p>
+            <p class="no-indent toc-item">6. Module Descriptions ............................................. 11</p>
+            <p class="no-indent toc-item">&nbsp;&nbsp;&nbsp;6.1 Model Layer</p>
+            <p class="no-indent toc-item">&nbsp;&nbsp;&nbsp;6.2 Data Access Layer</p>
+            <p class="no-indent toc-item">&nbsp;&nbsp;&nbsp;6.3 Service Layer</p>
+            <p class="no-indent toc-item">&nbsp;&nbsp;&nbsp;6.4 Presentation Layer</p>
+            <p class="no-indent toc-item">7. Seat Allocation Algorithm ....................................... 14</p>
+            <p class="no-indent toc-item">8. Double Booking Prevention ....................................... 15</p>
+            <p class="no-indent toc-item">9. SQL Queries ..................................................... 16</p>
+            <p class="no-indent toc-item">10. Screenshots .................................................... 18</p>
+            <p class="no-indent toc-item">11. Future Enhancements ............................................ 21</p>
+            <p class="no-indent toc-item">12. Conclusion ..................................................... 22</p>
+            <p class="no-indent toc-item">13. References ..................................................... 23</p>
+        </div>
+    </div>
+
+    <!-- Chapter 1: Introduction -->
+    <div class="page">
+        <h1 class="page-title">1. INTRODUCTION</h1>
+
+        <p>
+            In today's fast-paced world, efficient transportation management is crucial for both travelers and
+            service providers. The Bus Ticket Booking System addresses the need for a streamlined, automated
+            approach to managing bus reservations. This project implements a complete ticket booking solution
+            using Java programming language with MySQL database integration.
+        </p>
+
+        <p>
+            Traditional manual ticket booking systems are prone to errors, time-consuming, and difficult to
+            manage. Issues such as double booking, lost records, and inefficient seat allocation are common.
+            This computerized system eliminates these problems by providing a reliable, fast, and user-friendly
+            interface for managing bus ticket reservations.
+        </p>
+
+        <h3>1.1 Problem Statement</h3>
+        <p>
+            Manual bus ticket booking systems face several challenges including:
+        </p>
+        <ul>
+            <li>Difficulty in tracking available seats across multiple buses</li>
+            <li>Risk of double-booking the same seat</li>
+            <li>Time-consuming search for booking records</li>
+            <li>Lack of centralized data management</li>
+            <li>Inefficient cancellation and refund processing</li>
+        </ul>
+
+        <h3>1.2 Proposed Solution</h3>
+        <p>
+            The Bus Ticket Booking System provides a comprehensive solution with features including:
+        </p>
+        <ul>
+            <li>Centralized database for all booking information</li>
+            <li>Real-time seat availability tracking</li>
+            <li>Transaction-based booking to prevent double-booking</li>
+            <li>Visual seat map for easy selection</li>
+            <li>Quick search and retrieval of booking records</li>
+            <li>Simple cancellation process</li>
+        </ul>
+
+        <h3>1.3 Scope of the Project</h3>
+        <p>
+            This project covers the core functionalities required for a bus ticket booking system. It includes
+            route management, bus management, seat allocation, booking creation, cancellation, and booking
+            search features. The system is designed as a console-based application suitable for learning
+            purposes and can be extended to a web-based system in the future.
+        </p>
+    </div>
+
+    <!-- Chapter 2: Objectives -->
+    <div class="page">
+        <h1 class="page-title">2. OBJECTIVES</h1>
+
+        <p>
+            The primary objectives of the Bus Ticket Booking System are:
+        </p>
+
+        <h3>2.1 Primary Objectives</h3>
+        <ol>
+            <li><strong>Automate Ticket Booking:</strong> Provide a systematic approach to book bus tickets
+                with real-time seat availability checking.</li>
+
+            <li><strong>Prevent Double Booking:</strong> Implement transaction-based booking mechanism to
+                ensure the same seat cannot be booked twice for the same travel date.</li>
+
+            <li><strong>Manage Routes and Buses:</strong> Maintain a comprehensive database of bus routes,
+                buses, and their schedules.</li>
+
+            <li><strong>Enable Easy Cancellation:</strong> Allow users to cancel their bookings easily and
+                release the seat for other passengers.</li>
+
+            <li><strong>Provide Search Functionality:</strong> Enable searching for bookings by booking ID
+                or passenger phone number.</li>
+        </ol>
+
+        <h3>2.2 Technical Objectives</h3>
+        <ol>
+            <li><strong>Implement JDBC Connectivity:</strong> Use Java Database Connectivity to interact
+                with MySQL database for persistent data storage.</li>
+
+            <li><strong>Apply OOP Principles:</strong> Follow object-oriented programming concepts including
+                encapsulation, abstraction, and modularity.</li>
+
+            <li><strong>Use Layered Architecture:</strong> Implement separate layers for data access,
+                business logic, and presentation to ensure maintainability.</li>
+
+            <li><strong>Handle Exceptions:</strong> Implement proper exception handling for database
+                operations and user input validation.</li>
+
+            <li><strong>Create User-Friendly Interface:</strong> Design an intuitive console-based
+                menu system with clear prompts and feedback messages.</li>
+        </ol>
+
+        <h3>2.3 Learning Objectives</h3>
+        <ul>
+            <li>Understanding JDBC and database operations in Java</li>
+            <li>Implementing DAO (Data Access Object) design pattern</li>
+            <li>Working with SQL transactions for data integrity</li>
+            <li>Building modular and maintainable code structure</li>
+            <li>Designing database schemas with proper relationships</li>
+        </ul>
+    </div>
+
+    <!-- Chapter 3: System Requirements -->
+    <div class="page">
+        <h1 class="page-title">3. SYSTEM REQUIREMENTS</h1>
+
+        <h3>3.1 Software Requirements</h3>
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Requirement</th>
+            </tr>
+            <tr>
+                <td>Operating System</td>
+                <td>Windows 10/11, Linux, or macOS</td>
+            </tr>
+            <tr>
+                <td>Programming Language</td>
+                <td>Java SE (J2SE) 8 or above</td>
+            </tr>
+            <tr>
+                <td>JDK Version</td>
+                <td>JDK 8, 11, or 17 (LTS versions recommended)</td>
+            </tr>
+            <tr>
+                <td>Database</td>
+                <td>MySQL Server 5.7 or above</td>
+            </tr>
+            <tr>
+                <td>JDBC Driver</td>
+                <td>MySQL Connector/J 8.0.x</td>
+            </tr>
+            <tr>
+                <td>IDE (Optional)</td>
+                <td>VS Code, Eclipse, IntelliJ IDEA, or NetBeans</td>
+            </tr>
+        </table>
+
+        <h3>3.2 Hardware Requirements</h3>
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Minimum</th>
+                <th>Recommended</th>
+            </tr>
+            <tr>
+                <td>Processor</td>
+                <td>Intel Core i3 or equivalent</td>
+                <td>Intel Core i5 or above</td>
+            </tr>
+            <tr>
+                <td>RAM</td>
+                <td>4 GB</td>
+                <td>8 GB or more</td>
+            </tr>
+            <tr>
+                <td>Hard Disk</td>
+                <td>10 GB free space</td>
+                <td>20 GB free space</td>
+            </tr>
+            <tr>
+                <td>Display</td>
+                <td>1024 x 768 resolution</td>
+                <td>1920 x 1080 resolution</td>
+            </tr>
+        </table>
+
+        <h3>3.3 Development Tools Used</h3>
+        <ul>
+            <li><strong>Java JDK:</strong> For compiling and running Java programs</li>
+            <li><strong>MySQL Server:</strong> For database management</li>
+            <li><strong>MySQL Workbench:</strong> For database design and SQL execution</li>
+            <li><strong>VS Code/Eclipse:</strong> For code editing and debugging</li>
+            <li><strong>Command Prompt/Terminal:</strong> For running the application</li>
+        </ul>
+    </div>
+
+    <!-- Chapter 4: System Architecture -->
+    <div class="page">
+        <h1 class="page-title">4. SYSTEM ARCHITECTURE</h1>
+
+        <p>
+            The Bus Ticket Booking System follows a 3-tier layered architecture that separates concerns
+            and promotes maintainability. The architecture consists of the following layers:
+        </p>
+
+        <h3>4.1 Architecture Diagram</h3>
+        <div class="flowchart">
+            +----------------------------------------------------------+
+            | PRESENTATION LAYER |
+            | (BusTicketApp.java - Console UI) |
+            | - Main Menu Display |
+            | - User Input Handling |
+            | - Output Formatting (ConsoleUI.java) |
+            +----------------------------+-----------------------------+
+            |
+            v
+            +----------------------------------------------------------+
+            | BUSINESS LOGIC LAYER |
+            | (BookingService, RouteService, SeatService, etc.) |
+            | - Input Validation |
+            | - Business Rules |
+            | - Transaction Management |
+            +----------------------------+-----------------------------+
+            |
+            v
+            +----------------------------------------------------------+
+            | DATA ACCESS LAYER (DAO) |
+            | (RouteDAO, BusDAO, SeatDAO, BookingDAO) |
+            | - CRUD Operations |
+            | - SQL Query Execution |
+            | - Result Set Mapping |
+            +----------------------------+-----------------------------+
+            |
+            v
+            +----------------------------------------------------------+
+            | DATABASE LAYER |
+            | (MySQL Database) |
+            | - routes, buses, seats, bookings tables |
+            +----------------------------------------------------------+
+        </div>
+
+        <h3>4.2 Layer Descriptions</h3>
+
+        <h4>Presentation Layer</h4>
+        <p>
+            This layer handles all user interactions through the console interface. It displays menus,
+            receives user input, and presents formatted output. The ConsoleUI utility class provides
+            methods for creating visually appealing console output with colors and table formatting.
+        </p>
+
+        <h4>Business Logic Layer (Service Layer)</h4>
+        <p>
+            Contains the core business logic of the application. This layer validates inputs, enforces
+            business rules (like preventing past-date bookings), and coordinates between the presentation
+            and data access layers. It manages database transactions for operations requiring atomicity.
+        </p>
+
+        <h4>Data Access Layer (DAO Layer)</h4>
+        <p>
+            Responsible for all database interactions. Each entity (Route, Bus, Seat, Booking) has its
+            own DAO class that handles CRUD (Create, Read, Update, Delete) operations. This layer
+            abstracts the database implementation from the business logic layer.
+        </p>
+
+        <h4>Database Layer</h4>
+        <p>
+            The MySQL database stores all persistent data. It includes tables for routes, buses, seats,
+            and bookings with proper foreign key relationships to maintain data integrity.
+        </p>
+    </div>
+
+    <!-- Chapter 5: Database Design -->
+    <div class="page">
+        <h1 class="page-title">5. DATABASE DESIGN</h1>
+
+        <h3>5.1 Entity Relationship Diagram</h3>
+        <div class="flowchart">
+            +-------------+ +-------------+ +-------------+ +-------------+
+            | ROUTES | | BUSES | | SEATS | | BOOKINGS |
+            +-------------+ +-------------+ +-------------+ +-------------+
+            | route_id PK |<------| route_id FK | | seat_id PK |<------| seat_id FK | | source | 1:N | bus_id PK
+                |<------| bus_id FK | 1:N | booking_id | | destination | | bus_number | 1:N | seat_number | | passenger_
+                | | fare | | bus_type | | seat_type | | name | | duration_ | | total_seats | | is_booked | | passenger_
+                | | minutes | | departure_ | +-------------+ | phone | +-------------+ | time | | travel_date |
+                +-------------+ | status | +-------------+ Relationships: - One ROUTE has Many BUSES (1:N) - One BUS has
+                Many SEATS (1:N) - One SEAT has Many BOOKINGS (1:N) - for different travel dates </div>
+
+                <h3>5.2 Table Descriptions</h3>
+
+                <h4>5.2.1 Routes Table</h4>
+                <p class="no-indent">Stores information about bus routes between cities.</p>
+                <table>
+                    <tr>
+                        <th>Column Name</th>
+                        <th>Data Type</th>
+                        <th>Constraints</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>route_id</td>
+                        <td>INT</td>
+                        <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                        <td>Unique route identifier</td>
+                    </tr>
+                    <tr>
+                        <td>source</td>
+                        <td>VARCHAR(100)</td>
+                        <td>NOT NULL</td>
+                        <td>Starting city</td>
+                    </tr>
+                    <tr>
+                        <td>destination</td>
+                        <td>VARCHAR(100)</td>
+                        <td>NOT NULL</td>
+                        <td>Ending city</td>
+                    </tr>
+                    <tr>
+                        <td>fare</td>
+                        <td>DECIMAL(10,2)</td>
+                        <td>NOT NULL</td>
+                        <td>Ticket price in INR</td>
+                    </tr>
+                    <tr>
+                        <td>duration_minutes</td>
+                        <td>INT</td>
+                        <td>NOT NULL</td>
+                        <td>Travel time in minutes</td>
+                    </tr>
+                </table>
+        </div>
+
+        <!-- Database Design Continued -->
+        <div class="page">
+            <h4>5.2.2 Buses Table</h4>
+            <p class="no-indent">Stores information about buses operating on routes.</p>
+            <table>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Constraints</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>bus_id</td>
+                    <td>INT</td>
+                    <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                    <td>Unique bus identifier</td>
+                </tr>
+                <tr>
+                    <td>route_id</td>
+                    <td>INT</td>
+                    <td>FOREIGN KEY</td>
+                    <td>Reference to routes table</td>
+                </tr>
+                <tr>
+                    <td>bus_number</td>
+                    <td>VARCHAR(20)</td>
+                    <td>UNIQUE, NOT NULL</td>
+                    <td>Bus registration number</td>
+                </tr>
+                <tr>
+                    <td>bus_type</td>
+                    <td>ENUM</td>
+                    <td>NOT NULL</td>
+                    <td>'AC', 'NON_AC', 'SLEEPER', 'SEMI_SLEEPER'</td>
+                </tr>
+                <tr>
+                    <td>total_seats</td>
+                    <td>INT</td>
+                    <td>DEFAULT 40</td>
+                    <td>Number of seats in bus</td>
+                </tr>
+                <tr>
+                    <td>departure_time</td>
+                    <td>TIME</td>
+                    <td>NOT NULL</td>
+                    <td>Scheduled departure time</td>
+                </tr>
+            </table>
+
+            <h4>5.2.3 Seats Table</h4>
+            <p class="no-indent">Stores information about individual seats in buses.</p>
+            <table>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Constraints</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>seat_id</td>
+                    <td>INT</td>
+                    <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                    <td>Unique seat identifier</td>
+                </tr>
+                <tr>
+                    <td>bus_id</td>
+                    <td>INT</td>
+                    <td>FOREIGN KEY</td>
+                    <td>Reference to buses table</td>
+                </tr>
+                <tr>
+                    <td>seat_number</td>
+                    <td>VARCHAR(5)</td>
+                    <td>NOT NULL</td>
+                    <td>Seat number (e.g., "01", "15")</td>
+                </tr>
+                <tr>
+                    <td>seat_type</td>
+                    <td>ENUM</td>
+                    <td>NOT NULL</td>
+                    <td>'WINDOW', 'AISLE', 'MIDDLE'</td>
+                </tr>
+            </table>
+
+            <h4>5.2.4 Bookings Table</h4>
+            <p class="no-indent">Stores ticket booking information.</p>
+            <table>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Constraints</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>booking_id</td>
+                    <td>INT</td>
+                    <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                    <td>Unique booking identifier</td>
+                </tr>
+                <tr>
+                    <td>seat_id</td>
+                    <td>INT</td>
+                    <td>FOREIGN KEY</td>
+                    <td>Reference to seats table</td>
+                </tr>
+                <tr>
+                    <td>passenger_name</td>
+                    <td>VARCHAR(100)</td>
+                    <td>NOT NULL</td>
+                    <td>Name of passenger</td>
+                </tr>
+                <tr>
+                    <td>passenger_phone</td>
+                    <td>VARCHAR(15)</td>
+                    <td>NOT NULL</td>
+                    <td>Contact number</td>
+                </tr>
+                <tr>
+                    <td>travel_date</td>
+                    <td>DATE</td>
+                    <td>NOT NULL</td>
+                    <td>Date of travel</td>
+                </tr>
+                <tr>
+                    <td>status</td>
+                    <td>ENUM</td>
+                    <td>DEFAULT 'CONFIRMED'</td>
+                    <td>'CONFIRMED', 'CANCELLED'</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Module Descriptions -->
+        <div class="page">
+            <h1 class="page-title">6. MODULE DESCRIPTIONS</h1>
+
+            <h3>6.1 Model Layer</h3>
+            <p>
+                The model layer contains Java classes that represent the database entities. These are
+                Plain Old Java Objects (POJOs) with private fields, constructors, getters, and setters.
+            </p>
+
+            <table>
+                <tr>
+                    <th>Class</th>
+                    <th>Description</th>
+                    <th>Key Attributes</th>
+                </tr>
+                <tr>
+                    <td>Route.java</td>
+                    <td>Represents a bus route between two cities</td>
+                    <td>routeId, source, destination, fare, durationMinutes</td>
+                </tr>
+                <tr>
+                    <td>Bus.java</td>
+                    <td>Represents a bus operating on a route</td>
+                    <td>busId, busNumber, busType, totalSeats, departureTime</td>
+                </tr>
+                <tr>
+                    <td>Seat.java</td>
+                    <td>Represents an individual seat in a bus</td>
+                    <td>seatId, seatNumber, seatType, isBooked</td>
+                </tr>
+                <tr>
+                    <td>Booking.java</td>
+                    <td>Represents a ticket booking</td>
+                    <td>bookingId, passengerName, passengerPhone, travelDate, status</td>
+                </tr>
+            </table>
+
+            <h3>6.2 Data Access Layer (DAO)</h3>
+            <p>
+                The DAO layer handles all database operations. Each DAO class corresponds to a table
+                and provides methods for CRUD operations.
+            </p>
+
+            <table>
+                <tr>
+                    <th>Class</th>
+                    <th>Key Methods</th>
+                </tr>
+                <tr>
+                    <td>RouteDAO.java</td>
+                    <td>getAllRoutes(), getRouteById(), searchRoutes()</td>
+                </tr>
+                <tr>
+                    <td>BusDAO.java</td>
+                    <td>getBusesByRoute(), getBusById(), getAvailableSeatCount()</td>
+                </tr>
+                <tr>
+                    <td>SeatDAO.java</td>
+                    <td>getAvailableSeats(), isSeatAvailable(), getSeatByBusAndNumber()</td>
+                </tr>
+                <tr>
+                    <td>BookingDAO.java</td>
+                    <td>createBooking(), cancelBooking(), getBookingById(), getBookingsByPhone()</td>
+                </tr>
+            </table>
+
+            <h3>6.3 Service Layer</h3>
+            <p>
+                The service layer contains business logic and coordinates between the presentation
+                and data access layers.
+            </p>
+
+            <table>
+                <tr>
+                    <th>Class</th>
+                    <th>Responsibility</th>
+                </tr>
+                <tr>
+                    <td>RouteService.java</td>
+                    <td>Business logic for route display, search, and selection</td>
+                </tr>
+                <tr>
+                    <td>BusService.java</td>
+                    <td>Business logic for bus listing and selection</td>
+                </tr>
+                <tr>
+                    <td>SeatService.java</td>
+                    <td>Visual seat map generation, availability checking</td>
+                </tr>
+                <tr>
+                    <td>BookingService.java</td>
+                    <td>Core booking logic with transaction management</td>
+                </tr>
+            </table>
+
+            <h3>6.4 Utility Layer</h3>
+            <table>
+                <tr>
+                    <th>Class</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>DatabaseConnection.java</td>
+                    <td>Singleton pattern for database connection management</td>
+                </tr>
+                <tr>
+                    <td>ConsoleUI.java</td>
+                    <td>Console formatting utilities with colors and tables</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Seat Allocation Algorithm -->
+        <div class="page">
+            <h1 class="page-title">7. SEAT ALLOCATION ALGORITHM</h1>
+
+            <h3>7.1 Booking Process Flowchart</h3>
+            <div class="flowchart">
+                +------------------+
+                | START BOOKING |
+                +--------+---------+
+                |
+                +--------v---------+
+                | Select Route |
+                +--------+---------+
+                |
+                +--------v---------+
+                | Select Bus |
+                +--------+---------+
+                |
+                +--------v---------+
+                | Enter Travel Date|
+                +--------+---------+
+                |
+                +--------v---------+
+                | Display Available|
+                | Seats |
+                +--------+---------+
+                |
+                +-------------v-------------+
+                | Seats Available? |
+                +----+-------------+--------+
+                | NO | YES
+                +---------v--------+ +------v------+
+                | Show No Seats | | Select Seat |
+                | Message | | Number |
+                +---------+--------+ +------+------+
+                | |
+                | +-------v--------+
+                | | START |
+                | | TRANSACTION |
+                | +-------+--------+
+                | |
+                | +-------v----------+
+                | | Lock Seat Row |
+                | | (SELECT FOR |
+                | | UPDATE) |
+                | +-------+----------+
+                | |
+                | +-------v-------+
+                | | Still |
+                | | Available? |
+                | +--+--------+---+
+                | NO | | YES
+                | +---------v----+ |
+                | | ROLLBACK | |
+                | | Transaction | |
+                | +-------+------+ |
+                | | +-----v---------+
+                | +-------v------+ | Insert Booking|
+                | | Show Error | +-------+-------+
+                | +-------+------+ |
+                | | +-------v-------+
+                +-------------+ | COMMIT |
+                | | Transaction |
+                | +-------+-------+
+                | |
+                | +-------v-------+
+                | | Display Ticket|
+                | +-------+-------+
+                | |
+                +------------------+
+                |
+                +------v------+
+                | END |
+                +-------------+
+            </div>
+        </div>
+
+        <!-- Double Booking Prevention -->
+        <div class="page">
+            <h1 class="page-title">8. DOUBLE BOOKING PREVENTION</h1>
+
+            <p>
+                One of the critical features of the Bus Ticket Booking System is preventing double booking
+                of the same seat. This is achieved using database transactions and row-level locking.
+            </p>
+
+            <h3>8.1 The Problem</h3>
+            <p>
+                In a multi-user environment, two users might try to book the same seat simultaneously.
+                Without proper handling, both bookings could succeed, resulting in a conflict.
+            </p>
+
+            <h3>8.2 The Solution</h3>
+            <p>
+                The system uses the following approach to prevent double booking:
+            </p>
+
+            <ol>
+                <li><strong>Start Transaction:</strong> Begin a database transaction with auto-commit disabled.</li>
+                <li><strong>Lock the Row:</strong> Use SELECT ... FOR UPDATE to lock the seat row.</li>
+                <li><strong>Check Availability:</strong> Verify the seat is still available.</li>
+                <li><strong>Insert Booking:</strong> If available, insert the booking record.</li>
+                <li><strong>Commit or Rollback:</strong> Commit if successful, rollback if not.</li>
+            </ol>
+
+            <h3>8.3 Implementation Code</h3>
+            <div class="code">
+                // In BookingService.java
+                public boolean bookSeat(int busId, String seatNumber, ...) {
+                Connection conn = null;
+                try {
+                // Get new connection and start transaction
+                conn = DatabaseConnection.getInstance().getNewConnection();
+                conn.setAutoCommit(false);
+
+                // Check availability with row lock
+                if (!seatDAO.isSeatAvailable(conn, seatId, travelDate)) {
+                conn.rollback();
+                ConsoleUI.printError("Seat already booked!");
+                return false;
+                }
+
+                // Create booking
+                int bookingId = bookingDAO.createBooking(conn, booking);
+
+                // Commit transaction
+                conn.commit();
+                ConsoleUI.printSuccess("Booking successful!");
+                return true;
+
+                } catch (SQLException e) {
+                if (conn != null) conn.rollback();
+                return false;
+                }
+                }
+            </div>
+
+            <h3>8.4 SQL Query for Row Locking</h3>
+            <div class="code">
+                -- Check seat availability with row lock
+                SELECT COUNT(*) as cnt
+                FROM bookings
+                WHERE seat_id = ?
+                AND travel_date = ?
+                AND status = 'CONFIRMED'
+                FOR UPDATE;
+            </div>
+
+            <p>
+                The FOR UPDATE clause locks the matched rows, preventing other transactions from
+                modifying them until the current transaction is complete.
+            </p>
+        </div>
+
+        <!-- SQL Queries -->
+        <div class="page">
+            <h1 class="page-title">9. SQL QUERIES</h1>
+
+            <h3>9.1 Table Creation Queries</h3>
+            <div class="code">
+                -- Create Routes Table
+                CREATE TABLE routes (
+                route_id INT PRIMARY KEY AUTO_INCREMENT,
+                source VARCHAR(100) NOT NULL,
+                destination VARCHAR(100) NOT NULL,
+                fare DECIMAL(10, 2) NOT NULL,
+                duration_minutes INT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                );
+
+                -- Create Buses Table
+                CREATE TABLE buses (
+                bus_id INT PRIMARY KEY AUTO_INCREMENT,
+                route_id INT NOT NULL,
+                bus_number VARCHAR(20) NOT NULL UNIQUE,
+                bus_type ENUM('AC', 'NON_AC', 'SLEEPER', 'SEMI_SLEEPER') NOT NULL,
+                total_seats INT NOT NULL DEFAULT 40,
+                departure_time TIME NOT NULL,
+                FOREIGN KEY (route_id) REFERENCES routes(route_id)
+                );
+
+                -- Create Seats Table
+                CREATE TABLE seats (
+                seat_id INT PRIMARY KEY AUTO_INCREMENT,
+                bus_id INT NOT NULL,
+                seat_number VARCHAR(5) NOT NULL,
+                seat_type ENUM('WINDOW', 'AISLE', 'MIDDLE') NOT NULL,
+                FOREIGN KEY (bus_id) REFERENCES buses(bus_id),
+                UNIQUE KEY uk_bus_seat (bus_id, seat_number)
+                );
+
+                -- Create Bookings Table
+                CREATE TABLE bookings (
+                booking_id INT PRIMARY KEY AUTO_INCREMENT,
+                seat_id INT NOT NULL,
+                passenger_name VARCHAR(100) NOT NULL,
+                passenger_phone VARCHAR(15) NOT NULL,
+                passenger_email VARCHAR(100),
+                travel_date DATE NOT NULL,
+                booking_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                status ENUM('CONFIRMED', 'CANCELLED') DEFAULT 'CONFIRMED',
+                FOREIGN KEY (seat_id) REFERENCES seats(seat_id)
+                );
+            </div>
+
+            <h3>9.2 Data Retrieval Queries</h3>
+            <div class="code">
+                -- Get all routes
+                SELECT route_id, source, destination, fare, duration_minutes
+                FROM routes ORDER BY source, destination;
+
+                -- Get buses for a route with available seats
+                SELECT b.*, r.source, r.destination, r.fare,
+                (b.total_seats - COUNT(bk.booking_id)) as available
+                FROM buses b
+                JOIN routes r ON b.route_id = r.route_id
+                LEFT JOIN seats s ON b.bus_id = s.bus_id
+                LEFT JOIN bookings bk ON s.seat_id = bk.seat_id
+                AND bk.travel_date = ? AND bk.status = 'CONFIRMED'
+                WHERE b.route_id = ?
+                GROUP BY b.bus_id;
+
+                -- Get available seats for a bus on a date
+                SELECT s.*,
+                CASE WHEN b.booking_id IS NOT NULL THEN TRUE ELSE FALSE END as is_booked
+                FROM seats s
+                LEFT JOIN bookings b ON s.seat_id = b.seat_id
+                AND b.travel_date = ? AND b.status = 'CONFIRMED'
+                WHERE s.bus_id = ?
+                ORDER BY s.seat_number;
+            </div>
+        </div>
+
+        <!-- SQL Queries Continued -->
+        <div class="page">
+            <h3>9.3 Data Modification Queries</h3>
+            <div class="code">
+                -- Insert new booking
+                INSERT INTO bookings
+                (seat_id, passenger_name, passenger_phone, passenger_email, travel_date, status)
+                VALUES (?, ?, ?, ?, ?, 'CONFIRMED');
+
+                -- Cancel booking
+                UPDATE bookings
+                SET status = 'CANCELLED'
+                WHERE booking_id = ? AND status = 'CONFIRMED';
+
+                -- Get booking details by ID
+                SELECT b.*, s.seat_number, s.seat_type,
+                bus.bus_number, bus.bus_type, bus.departure_time,
+                r.source, r.destination, r.fare
+                FROM bookings b
+                JOIN seats s ON b.seat_id = s.seat_id
+                JOIN buses bus ON s.bus_id = bus.bus_id
+                JOIN routes r ON bus.route_id = r.route_id
+                WHERE b.booking_id = ?;
+
+                -- Search bookings by phone number
+                SELECT b.*, s.seat_number, r.source, r.destination
+                FROM bookings b
+                JOIN seats s ON b.seat_id = s.seat_id
+                JOIN buses bus ON s.bus_id = bus.bus_id
+                JOIN routes r ON bus.route_id = r.route_id
+                WHERE b.passenger_phone LIKE ?
+                ORDER BY b.travel_date DESC;
+            </div>
+
+            <h3>9.4 Aggregate Queries</h3>
+            <div class="code">
+                -- Get available seat count for a bus on a date
+                SELECT COUNT(*) as available
+                FROM seats s
+                WHERE s.bus_id = ?
+                AND s.seat_id NOT IN (
+                SELECT seat_id FROM bookings
+                WHERE travel_date = ? AND status = 'CONFIRMED'
+                );
+
+                -- Get booking statistics
+                SELECT
+                COUNT(*) as total_bookings,
+                SUM(CASE WHEN status = 'CONFIRMED' THEN 1 ELSE 0 END) as confirmed,
+                SUM(CASE WHEN status = 'CANCELLED' THEN 1 ELSE 0 END) as cancelled
+                FROM bookings;
+
+                -- Get popular routes
+                SELECT r.source, r.destination, COUNT(b.booking_id) as total_bookings
+                FROM routes r
+                JOIN buses bus ON r.route_id = bus.route_id
+                JOIN seats s ON bus.bus_id = s.bus_id
+                JOIN bookings b ON s.seat_id = b.seat_id
+                WHERE b.status = 'CONFIRMED'
+                GROUP BY r.route_id
+                ORDER BY total_bookings DESC
+                LIMIT 5;
+            </div>
+        </div>
+
+        <!-- Screenshots -->
+        <div class="page">
+            <h1 class="page-title">10. SCREENSHOTS</h1>
+
+            <h3>10.1 Main Menu</h3>
+            <div class="code">
+                +======================================================+
+                | |
+                | *** BUS TICKET BOOKING SYSTEM *** |
+                | |
+                | Book Your Journey Today! |
+                | |
+                +======================================================+
+
+                MAIN MENU
+                ----------------------------------------
+
+                [1] View All Routes
+                [2] Search Buses by Route
+                [3] View Seat Availability
+                [4] Book a Ticket
+                [5] Cancel Booking
+                [6] View Booking Details
+                [7] Search Bookings by Phone
+                [8] View All Bookings
+
+                ----------------------------------------
+                [0] Exit
+
+                > Enter your choice:
+            </div>
+
+            <h3>10.2 View All Routes</h3>
+            <div class="code">
+                Available Routes (10)
+                ---------------------
+                +-------+-----------------+-----------------+------------+------------+
+                | ID | From | To | Fare | Duration |
+                +-------+-----------------+-----------------+------------+------------+
+                | 1 | Delhi | Mumbai | Rs.1500 | 12h 00m |
+                | 2 | Delhi | Jaipur | Rs.600 | 5h 00m |
+                | 3 | Mumbai | Pune | Rs.400 | 3h 00m |
+                | 4 | Bangalore | Chennai | Rs.800 | 6h 00m |
+                | 5 | Hyderabad | Bangalore | Rs.900 | 7h 00m |
+                +-------+-----------------+-----------------+------------+------------+
+            </div>
+
+            <h3>10.3 Seat Availability View</h3>
+            <div class="code">
+                Seat Layout - DL-MH-001
+                Route: Delhi -> Mumbai
+                Type: AC | Departure: 06:00
+                Date: 2026-01-15
+
+                Seat Legend:
+                [ ] Available [XX] Booked
+
+                +-----------------------------+
+                | FRONT |
+                +-----------------------------+
+                | [01] [02] [03] [04] |
+                | [05] [XX] [07] [XX] |
+                | [09] [10] [11] [12] |
+                +-----------------------------+
+                | REAR |
+                +-----------------------------+
+
+                Available: 36 | Booked: 4 | Total: 40
+            </div>
+        </div>
+
+        <!-- Screenshots Continued -->
+        <div class="page">
+            <h3>10.4 Booking Confirmation Ticket</h3>
+            <div class="code">
+                +==================================================+
+                | *** BUS TICKET *** |
+                +==================================================+
+                | Booking ID : 1 |
+                | Passenger : John Doe |
+                | Phone : 9876543210 |
+                +==================================================+
+                | Bus : DL-MH-001 (AC) |
+                | Route : Delhi -> Mumbai |
+                | Seat No. : 05 |
+                +==================================================+
+                | Travel Date : 2026-01-10 |
+                | Departure : 06:00 |
+                | Fare : Rs.1500.00 |
+                +==================================================+
+                | Status: CONFIRMED |
+                +==================================================+
+            </div>
+
+            <h3>10.5 View All Bookings</h3>
+            <div class="code">
+                All Confirmed Bookings (1)
+                --------------------------
+                +----------+-----------------+--------------+------------+----------+----------+
+                | ID | Passenger | Phone | Date | Bus | Fare |
+                +----------+-----------------+--------------+------------+----------+----------+
+                | 1 | John Doe | 9876543210 | 2026-01-10 | DL-MH-001| Rs.1500 |
+                +----------+-----------------+--------------+------------+----------+----------+
+            </div>
+
+            <h3>10.6 Booking Cancellation</h3>
+            <div class="code">
+                +==================================================+
+                | CANCEL BOOKING |
+                +==================================================+
+
+                > Enter Booking ID: 1
+
+                Booking Details:
+                [Ticket Display]
+
+                > Are you sure you want to cancel this booking? (yes/no): yes
+
+                [OK] Booking #1 has been cancelled successfully!
+                [i] Seat 05 is now available for booking.
+            </div>
+        </div>
+
+        <!-- Future Enhancements -->
+        <div class="page">
+            <h1 class="page-title">11. FUTURE ENHANCEMENTS</h1>
+
+            <p>
+                While the current system provides core functionality for bus ticket booking, several
+                enhancements can be made to improve its capabilities:
+            </p>
+
+            <h3>11.1 User Authentication</h3>
+            <ul>
+                <li>Implement user registration and login system</li>
+                <li>Role-based access control (Admin, Staff, Customer)</li>
+                <li>Password encryption and secure session management</li>
+            </ul>
+
+            <h3>11.2 Payment Integration</h3>
+            <ul>
+                <li>Online payment gateway integration</li>
+                <li>Multiple payment options (UPI, Cards, Net Banking)</li>
+                <li>Payment receipt generation</li>
+            </ul>
+
+            <h3>11.3 Web Interface</h3>
+            <ul>
+                <li>Convert to web-based application using Spring Boot</li>
+                <li>Responsive design for mobile devices</li>
+                <li>RESTful API development</li>
+            </ul>
+
+            <h3>11.4 Advanced Features</h3>
+            <ul>
+                <li>SMS/Email notifications for booking confirmation</li>
+                <li>Dynamic pricing based on demand</li>
+                <li>Seat selection with graphical interface</li>
+                <li>Multi-language support</li>
+                <li>Booking history and analytics</li>
+                <li>Loyalty program and discounts</li>
+            </ul>
+
+            <h3>11.5 Reporting</h3>
+            <ul>
+                <li>Daily/Monthly booking reports</li>
+                <li>Revenue analytics</li>
+                <li>Popular routes analysis</li>
+                <li>PDF ticket generation</li>
+            </ul>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="page">
+            <h1 class="page-title">12. CONCLUSION</h1>
+
+            <p>
+                The Bus Ticket Booking System successfully demonstrates the implementation of a
+                practical Java application with database connectivity. The project achieves all
+                its primary objectives of automating ticket booking, preventing double-booking,
+                and providing an efficient management system for bus reservations.
+            </p>
+
+            <h3>Key Achievements</h3>
+            <ul>
+                <li><strong>Functional System:</strong> Complete working application with all
+                    essential features for bus ticket management.</li>
+
+                <li><strong>Robust Architecture:</strong> Well-structured code following layered
+                    architecture and design patterns.</li>
+
+                <li><strong>Data Integrity:</strong> Transaction-based booking ensuring no
+                    double-booking of seats.</li>
+
+                <li><strong>User-Friendly Interface:</strong> Intuitive console menu with clear
+                    navigation and feedback.</li>
+
+                <li><strong>Maintainable Code:</strong> Modular design allowing easy extension
+                    and modification.</li>
+            </ul>
+
+            <h3>Technical Skills Gained</h3>
+            <ul>
+                <li>JDBC programming for database connectivity</li>
+                <li>SQL query writing and optimization</li>
+                <li>Transaction management and concurrency handling</li>
+                <li>Object-oriented design principles</li>
+                <li>DAO and Service layer patterns</li>
+                <li>Exception handling best practices</li>
+            </ul>
+
+            <p>
+                The project serves as a foundation for understanding real-world application
+                development and can be extended to a full-featured web-based system. The
+                experience gained through this project provides valuable insights into software
+                development lifecycle, database design, and Java programming best practices.
+            </p>
+        </div>
+
+        <!-- References -->
+        <div class="page">
+            <h1 class="page-title">13. REFERENCES</h1>
+
+            <ol>
+                <li>
+                    <strong>Java: The Complete Reference</strong><br>
+                    Herbert Schildt, McGraw-Hill Education
+                </li>
+                <br>
+                <li>
+                    <strong>Head First Java</strong><br>
+                    Kathy Sierra and Bert Bates, O'Reilly Media
+                </li>
+                <br>
+                <li>
+                    <strong>JDBC API Documentation</strong><br>
+                    Oracle Corporation<br>
+                    https://docs.oracle.com/javase/tutorial/jdbc/
+                </li>
+                <br>
+                <li>
+                    <strong>MySQL Reference Manual</strong><br>
+                    Oracle Corporation<br>
+                    https://dev.mysql.com/doc/refman/8.0/en/
+                </li>
+                <br>
+                <li>
+                    <strong>Design Patterns: Elements of Reusable Object-Oriented Software</strong><br>
+                    Gang of Four, Addison-Wesley
+                </li>
+                <br>
+                <li>
+                    <strong>Effective Java</strong><br>
+                    Joshua Bloch, Addison-Wesley
+                </li>
+                <br>
+                <li>
+                    <strong>MySQL Connector/J Developer Guide</strong><br>
+                    https://dev.mysql.com/doc/connector-j/8.0/en/
+                </li>
+            </ol>
+
+            <br><br>
+
+            <div class="center">
+                <p class="no-indent"><strong>--- END OF REPORT ---</strong></p>
+            </div>
+        </div>
+
+</body>
+
+</html>
